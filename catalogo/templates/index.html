@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+
+{% block title %} Mi Superlibro {% endblock %}
+{% block content %}
+
+
+    <h1>Indice del catalogo</h1>
+    <img src="https://c.tenor.com/rkI1a8s2Z6QAAAAC/todd-howard-it-just-works.gif" alt="">
+    {{author}}
+    <h2 class="mt-4">Ultimos Libros</h2>
+    <ul>
+        {% for libro in libros %}
+           <li> {{libro.title}} 
+                {%if libro.author%}
+                ({{libro.author.last_name}})</li>
+            {% endif %}
+        {% endfor %}
+
+{% endblock %}
+    </ul>
