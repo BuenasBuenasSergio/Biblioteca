@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} Libros {% endblock %}
+{% block content %}
+
+    <!-- Formulario de busqueda-->
+    <h1>Indice de Libros</h1>
+    <table class="table table-striped">
+        <tr><td>Titulo</td><td>Autor</td><td>Generos</td><td>idiomas</td></tr>
+        {% for libro in libros %}
+        <tr>
+            <td>
+                {{libro.title}}
+            </td> 
+            <td>
+                {%if libro.author%}
+                    {{libro.author.last_name}}
+                {% endif %}
+            </td>
+            <td>
+                {% for genre in libro.genre.all %}
+                    {{genre}}
+                {% endfor %}
+            </td>
+            <td>
+                {% for language in libro.language.all %}
+                    {{language}}
+                {% endfor %}
+            </td>
+        {% endfor %}
+        </tr>
+    </table>
+
+    {% endblock %}
