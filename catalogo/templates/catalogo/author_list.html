@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %} Mi Superlibro {% endblock %}
+{% block content %}
+
+    <center>
+    <h1>Indice del Autores</h1>
+    <table class="table table-striped">
+        <tr>
+        <td>Nombre</td><td>Apellido</td><td>Fecha Nac</td><td>Fecha Def</td><td>Modificar</td><td>Eliminar</td>
+    </tr>
+        {% for autor in author_list %}
+           <tr> <td>{{autor.first_name}} </td>
+                <td>{{autor.last_name}}</td>
+                <td>{{autor.date_of_birth}}</td>
+                <td>{{autor.date_of_death}}</td>
+                <td><a href="{% url 'modificar_autor' autor.id %}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td>
+                    <a href="{% url 'eliminar_autor' autor.id %}"><i class="bi bi-trash"></i></a>
+                </td>
+        {% endfor %}
+
+{% endblock %}
+    </table>
+    </center>
