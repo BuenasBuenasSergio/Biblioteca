@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %} Libros {% endblock %}
+{% block content %}
+
+    <h1>Indice de Libros</h1>
+    <table class="table table-striped">
+        <tr><td>Titulo</td><td>Autor</td><td>Generos</td><td>idiomas</td></tr>
+        {% for libro in book_list %}
+        <tr>
+            <td>
+                {{libro.title}}
+            </td> 
+            <td>
+                {%if libro.author%}
+                    {{libro.author.last_name}}
+                {% endif %}
+            </td>
+            <td>
+                {% for genre in libro.genre.all %}
+                    {{genre}}
+                {% endfor %}
+            </td>
+            <td>
+                {% for language in libro.language.all %}
+                    {{language}}
+                {% endfor %}
+            </td>
+        {% endfor %}
+        </tr>
+    </table>
+    
+    {% block pagination %}
+        {% if is_paginated %}
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item ">
+                    {% if page_obj.has_previous %}
+                    <a class="page-link" href="{{ request.path }}?page={{ page_obj.previous_page_number }}" tabindex="-1">Anterior</a>
+                    {% endif %}
+                </li>
+                <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                    <a class="page-link" href="{{ request.path }}?page={{ page_obj.next_page_number }}">Siguiente</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    {% endblock %}
+
+    
+{% endblock %}

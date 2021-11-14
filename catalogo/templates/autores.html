@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Mi Superlibro {% endblock %}
+{% block content %}
+
+
+    <h1>Indice del Autores</h1>
+    <table width='50%'>
+        <tr>
+        <td>Nombre</td><td>Apellido</td><td>Fecha Nac</td><td>Fecha Def</td>
+    </tr>
+        {% for autor in autores %}
+           <tr> <td>{{autor.first_name}} </td>
+               <td>{{autor.last_name}}</td>
+               <td>{{autor.date_of_birth}}</td>
+               <td>{{autor.date_of_death}}</td>
+        {% endfor %}
+
+{% endblock %}
+    </table>

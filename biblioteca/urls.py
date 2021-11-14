@@ -15,9 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
 from catalogo.views import indice
+from catalogo.views import autores
+from catalogo.views import contact
+import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #Index de web
     path('', indice, name='indice'),
+    path('autores/', autores, name='autores'),
+    path('contacto/' ,contact, name='contacto'),
+    #Redireccion a catlogos
+    path('catalogo/', include('catalogo.urls')),
+
+    path('__debug__/', include(debug_toolbar.urls)),
 ]

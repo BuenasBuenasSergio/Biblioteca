@@ -6,9 +6,16 @@
 
 
     <h1>Indice del catalogo</h1>
-    <img src="https://c.tenor.com/rkI1a8s2Z6QAAAAC/todd-howard-it-just-works.gif" alt="">
-    {{author}}
+    <form class="form-inline mt-2 mt-md-0" action="{% url 'search_results' %}" method="get">
+    <input name="q" class="form-control mr-sm-2" type="text" 
+        placeholder="Search" aria-label="Search">
+</form>
+    {% if noencotrado %}
+        <h3 class="error">Mensaje no encontrado</h3>
+    {% endif %}
     <h2 class="mt-4">Ultimos Libros</h2>
+    <hr>
+    
     <ul>
         {% for libro in libros %}
            <li> {{libro.title}} 

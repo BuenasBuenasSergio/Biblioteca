@@ -2,12 +2,12 @@ from django.contrib import admin
 from django.db.models import fields
 
 # Register your models here.
-from .models import Author, Genre, Book
+from .models import Author, Genre, Book, Language
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'muestra_genero']
-    list_filter = ['author', 'genre']
+    list_filter = ['author', 'genre', 'language']
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
@@ -21,4 +21,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
     pass

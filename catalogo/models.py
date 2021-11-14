@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Genre(models.Model):
     name = models.CharField("Genero", max_length=200)
 
@@ -24,6 +23,15 @@ class Author(models.Model):
         verbose_name = 'Autor'
         verbose_name_plural = 'Autores'
 
+
+
+class Language(models.Model):
+    language = models.CharField("Lenguaje" ,max_length=100)
+
+    def __str__(self):
+        return self.language
+
+
 class Book(models.Model):
     '''Libro de aplicacion de biblioteca...'''
     title = models.CharField(max_length=250)
@@ -33,6 +41,7 @@ class Book(models.Model):
     #relaciones de autor y genero
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)
     genre = models.ManyToManyField(Genre)
+    language = models.ManyToManyField(Language)
 
     def __str__(self):
         return self.title
